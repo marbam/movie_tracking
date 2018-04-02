@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>{{year.year}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+    	<ion-item text-center>Total in Year<br><h1 class="bigh">{{year.watched}}</h1></ion-item>
+    </ion-col>
+      <ion-col col-6>
+    	<ion-item text-center>Cinema<br><h1 class="bigh">{{year.cinema}}</h1></ion-item>
+	  </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+    	<ion-item text-center>Netflix<br><h1 class="bigh">{{year.netflix}}</h1></ion-item>
+	  </ion-col>
+      <ion-col col-6>
+        <ion-item text-center>Other<br><h1 class="bigh">{{year.other}}</h1></ion-item>
+	  </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <button ion-button full color="secondary" (click)="addMovie()">Add</button>
+
+	<ion-item *ngFor="let m of this.year.movies">
+		{{m.film}} 
+		<div>{{m.date_readable}} | 
+			<span *ngIf="m.source =='cinema'">Cinema</span>
+			<span *ngIf="m.source == 'netflix'">Netflix</span>
+			<span *ngIf="m.source == 'other'">Other</span>
+		</div>
+	</ion-item>
+
+  <ion-fab left bottom *ngIf="year.year > 2018" (click)="getPrev()">
+    <button ion-fab color="secondary"><ion-icon name="arrow-dropleft"></ion-icon></button>
+  </ion-fab>
+
+  <ion-fab right bottom *ngIf="year.year <= 2021" (click)="getNext()">
+    <button ion-fab color="primary"><ion-icon name="arrow-dropright"></ion-icon></button>
+  </ion-fab>
+</ion-content>

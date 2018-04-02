@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>Add Entry</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-item color="danger" *ngIf="no_title && film.film==''">No film entered</ion-item>
+  <ion-item color="danger" *ngIf="no_date && film.date==''">No date entered</ion-item>
+  <ion-item color="danger" *ngIf="no_source && film.source==''">No source entered</ion-item>
+
+
+
+  <ion-list>
+  	<ion-item>
+	  <ion-label color="primary" >Film</ion-label>
+	  <ion-input [(ngModel)]="film.film"></ion-input>
+  	</ion-item>
+  	<ion-item>
+	  <ion-label color="primary">Watched</ion-label>
+	  <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="film.date"></ion-datetime>
+    </ion-item>
+
+	<ion-list>
+	  <ion-list-header>
+	    Media:
+	  </ion-list-header>
+
+	  <ion-item> 
+	  	<ion-label>Cinema</ion-label>
+	  	<ion-checkbox (click)="selectMedia('cinema')" checked="{{film.source == 'cinema'}}"></ion-checkbox>
+	  </ion-item>
+
+	  <ion-item> 
+	  	<ion-label>Netflix</ion-label>
+	  	<ion-checkbox (click)="selectMedia('netflix')" checked="{{film.source == 'netflix'}}"></ion-checkbox>
+	  </ion-item>
+
+	  <ion-item> 
+	  	<ion-label>Other</ion-label>
+	  	<ion-checkbox (click)="selectMedia('other')" checked="{{film.source == 'other'}}"></ion-checkbox>
+	  </ion-item>
+
+	</ion-list>
+  </ion-list>
+  <button ion-button full (click)="save()">Save</button>
+</ion-content>
